@@ -1,3 +1,4 @@
+Пет-проект телеграм-бот выболнен командой https://github.com/gen-ad, https://github.com/AnastasiaNehodova, 
 Телеграм-бота можно найти по ссылке: @FoodNutritionAndRecipesBot либо по имени: Food nutrition and recipes
 
 Запустить меню бота можно с помощью команд /старт /помощь /help /start
