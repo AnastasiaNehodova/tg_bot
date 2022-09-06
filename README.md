@@ -16,7 +16,7 @@ data_new.csv - преобразованный датасет, используе
 
 similar.csv - датасет, сформированный для определения похожего продукта.
 
-similar.ipynb - последовательность формирование data_new.csv, similar.csv.
+data_preparation.ipynb - последовательность формирование data_new.csv, similar.csv.
 
 Edamam - Recipe Search API - получение картинки рецепта, ингредиентов рецепта, ссылки на рецепт.
 
