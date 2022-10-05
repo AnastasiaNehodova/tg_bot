@@ -94,6 +94,10 @@ async def print_nutrition(message: types.Message, state: FSMContext):
 			await bot.send_photo(message.from_user.id, photo=open('images/lebedev.jpg', 'rb'))
 			await bot.send_message(message.from_user.id, "Пока не знаю характеристики этого продукта :( ")
 	await state.finish()
+	await bot.send_message(message.from_user.id, '{first_name} {last_name}, посмотри, что я еще умею!'
+			.format(first_name=message.from_user.first_name, last_name=message.from_user.last_name),
+			reply_markup=kb_client)
+
 
 
 async def input_number_of_recipes(message: types.Message, state: FSMContext):
@@ -130,6 +134,10 @@ async def print_recipe(message: types.Message, state: FSMContext):
 		await bot.send_photo(message.from_user.id, photo=open('images/lebedev.jpg', 'rb'))
 		await bot.send_message(message.from_user.id, "Ничего не могу найти с такими ингредиентами :(")
 	await state.finish()
+	await bot.send_message(message.from_user.id, '{first_name} {last_name}, оцени, что я могу!'
+		.format(first_name=message.from_user.first_name, last_name=message.from_user.last_name),
+		reply_markup=kb_client)
+
 
 async def print_similar_products(message: types.Message, state: FSMContext):
 	data = pd.read_csv('data/similar.csv')
@@ -140,6 +148,9 @@ async def print_similar_products(message: types.Message, state: FSMContext):
 		await bot.send_message(message.from_user.id, 'Похожий продукт:')
 		await bot.send_message(message.from_user.id, sim)
 		await state.finish()
+		await bot.send_message(message.from_user.id, '{first_name} {last_name}, давай еще разок!'
+			.format(first_name=message.from_user.first_name, last_name=message.from_user.last_name),
+			reply_markup=kb_client) 
 	elif len(data2) == 0:
 		data3 = data.loc[data['product'].str.contains(key)]
 		bn = data3['product']
@@ -156,7 +167,10 @@ async def print_similar_products(message: types.Message, state: FSMContext):
 			else:
 				await bot.send_photo(message.from_user.id, photo=open('images/lebedev.jpg', 'rb'))
 				await bot.send_message(message.from_user.id, "Не знаю такой продукт :(")
-				await state.finish() 
+				await state.finish()
+				await bot.send_message(message.from_user.id, '{first_name} {last_name}, давай еще разок!'
+					.format(first_name=message.from_user.first_name, last_name=message.from_user.last_name),
+					reply_markup=kb_client) 
 
 		if len(bn) > 0:
 			await bot.send_message(message.from_user.id, "Возможно ты имел ввиду:")
@@ -167,7 +181,10 @@ async def print_similar_products(message: types.Message, state: FSMContext):
 	else:
 		await bot.send_photo(message.from_user.id, photo=open('images/lebedev.jpg', 'rb'))
 		await bot.send_message(message.from_user.id, "Не знаю такой продукт :(")
-		await state.finish() 
+		await state.finish()
+		await bot.send_message(message.from_user.id, '{first_name} {last_name}, давай еще разок!'
+			.format(first_name=message.from_user.first_name, last_name=message.from_user.last_name),
+			reply_markup=kb_client)  
 
 async def print_similar_products_for_product_from_list(message: types.Message, state: FSMContext):
 	data = pd.read_csv('data/similar.csv')
@@ -180,7 +197,10 @@ async def print_similar_products_for_product_from_list(message: types.Message, s
 	else:
 		await bot.send_photo(message.from_user.id, photo=open('images/lebedev.jpg', 'rb'))
 		await bot.send_message(message.from_user.id, "Не знаю такой продукт :(")
-	await state.finish() 
+	await state.finish()
+	await bot.send_message(message.from_user.id, '{first_name} {last_name}, давай еще разок!'
+		.format(first_name=message.from_user.first_name, last_name=message.from_user.last_name),
+		reply_markup=kb_client)  
 
 def register_handlers_client(dp : Dispatcher):
 	dp.register_message_handler(command_start, commands=['старт', 'помощь', 'start', 'help'], state=None)
@@ -192,3 +212,4 @@ def register_handlers_client(dp : Dispatcher):
 	dp.register_message_handler(print_recipe, state=FSMClient.products_for_recipe)
 	dp.register_message_handler(print_similar_products, state=FSMClient.product_for_similar_products)
 	dp.register_message_handler(print_similar_products_for_product_from_list, state=FSMClient.product_from_list_for_similar_products)
+	dp.register_message_handler(command_start)
