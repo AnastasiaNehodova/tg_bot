@@ -24,5 +24,3 @@ Edamam - Recipe Search API - получение картинки рецепта,
 
 Edamam - Food and Grocery Database API - получение картинки продукта.
 
-![alt text](https://github.com/AnastasiaNehodova/tg_bot/blob/main/images/no_photo.jpg?raw=true)
-
