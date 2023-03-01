@@ -23,4 +23,6 @@ data_preparation.ipynb - последовательность формирова
 Edamam - Recipe Search API - получение картинки рецепта, ингредиентов рецепта, ссылки на рецепт.
 
 Edamam - Food and Grocery Database API - получение картинки продукта.
- ![alt tag](http://url/to/img.png](https://github.com/AnastasiaNehodova/tg_bot/blob/main/images/no_photo.jpg)
+
+![alt text](https://github.com/AnastasiaNehodova/tg_bot/blob/main/images/no_photo.jpg?raw=true)
+
